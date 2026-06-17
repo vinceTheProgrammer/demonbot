@@ -62,6 +62,7 @@ export async function handleShowoffMessage(message: Message) {
     }
 
     try {
+        await message.react('⭐');
         await message.startThread({ name: "Discussion"});
     } catch (error) {
         console.error('Failed to process showoff message:', error);

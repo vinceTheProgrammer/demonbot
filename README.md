@@ -61,3 +61,11 @@ pnpm run start:prod
 
 # Note
 Sometimes you may need to run `pnpm run clean` before `pnpm run dev`/`pnpm run start:prod` if you have an old build with some lingering deleted files (for example if deleting commands between builds).
+
+
+# Note to self
+To update on the VPS, just do
+```
+git pull
+pnpm run start:full
+```

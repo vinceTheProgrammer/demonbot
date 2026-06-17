@@ -5,6 +5,7 @@ export enum ChannelId {
     WelcomeMessage = '1305675026426761288',
     Notices = '1305675026426761288',
     Showoff = '1295532705441644645',
+    ShowoffNew = '1516370499171782847',
     Log = '1300971870094622740'
 }
 

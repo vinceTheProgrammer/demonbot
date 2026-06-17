@@ -2,6 +2,7 @@ import { EmbedBuilder, ForumChannel, Message, TextChannel, ThreadChannel, type E
 import { container } from '@sapphire/framework';
 import { MessageBuilder } from "@sapphire/discord.js-utilities";
 import { getAlertEmbed } from "./embeds.js";
+import { ChannelId } from "../constants/channels.js";
 
 export function sendAlert(channelId: string, message: string) {
     const channel = container.client.channels.cache.get(channelId);
@@ -49,4 +50,20 @@ export function parseMessageLink(link: string): { guildId: string; channelId: st
     if (!guildId || !channelId || !messageId) return null;
 
     return { guildId, channelId, messageId };
+}
+
+export async function handleShowoffMessage(message: Message) {
+    if (message.channelId !== ChannelId.ShowoffNew) {
+        return;
+    }
+
+    if (message.author.bot) {
+        return;
+    }
+
+    try {
+        await message.startThread({ name: "Discussion"});
+    } catch (error) {
+        console.error('Failed to process showoff message:', error);
+    }
 }

@@ -64,6 +64,12 @@ export async function handleShowoffMessage(message: Message) {
     let threadTitle = message.author.displayName;
     if (message.content.length > 0) threadTitle = message.content;
 
+    const MAX_THREAD_NAME = 90;
+
+    if (threadTitle.length > MAX_THREAD_NAME) {
+        threadTitle = threadTitle.slice(0, 87) + "...";
+    }
+
     try {
         await message.react("⭐");
     } catch (err) {

@@ -61,10 +61,16 @@ export async function handleShowoffMessage(message: Message) {
         return;
     }
 
+    let threadTitle = message.author.displayName;
+    if (message.content.length > 0) threadTitle = message.content;
+
     try {
-        await message.react('⭐');
-        await message.startThread({ name: "Discussion"});
-    } catch (error) {
-        console.error('Failed to process showoff message:', error);
+        await message.react("⭐");
+    } catch (err) {
+        console.error("Failed to react:", err);
     }
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    await message.startThread({ name: threadTitle }).catch(() => {});
 }
